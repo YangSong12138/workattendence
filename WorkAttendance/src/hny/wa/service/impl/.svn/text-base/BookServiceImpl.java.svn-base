@@ -1,0 +1,144 @@
+package com.bjtu.lms.service.impl;
+
+import com.bjtu.lms.dao.BookDao;
+import com.bjtu.lms.model.Book;
+import com.bjtu.lms.service.BookService;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author yilee
+ */
+public class BookServiceImpl implements BookService {
+
+	private BookDao bookDao;
+
+	public BookDao getBookDao() {
+		return bookDao;
+	}
+
+	public void setBookDao(BookDao bookDao) {
+		this.bookDao = bookDao;
+	}
+
+	public Book saveBook(String ISBN, String name, String synopsis, int publishId, String publishTime, String author, double price) {
+		if (findBooksByISBN(ISBN) != null) {
+			return null;
+		} else {
+			Book b = new Book();
+			b.setISBN(ISBN);
+			b.setName(name);
+			b.setSynopsis(synopsis);
+			b.setPublishId(publishId);
+			b.setPublishTime(publishTime);
+			b.setAuthor(author);
+			b.setPrice(price);
+			bookDao.save(b);
+			return b;
+		}
+	}
+
+	public boolean deleteBookById(int id) {
+		Book b = findBooksById(id);
+		if (b == null) {
+			return false;
+		} else {
+			bookDao.delete(b);
+			return true;
+		}
+	}
+
+	public Book modifyBook(int id, String ISBN, String name, String synopsis, int publishId, String publishTime, String author, double price) {
+		Book b = findBooksById(id);
+		if (b == null) {
+			return null;
+		} else {
+			b.setISBN(ISBN);
+			b.setName(name);
+			b.setSynopsis(synopsis);
+			b.setPublishId(publishId);
+			b.setPublishTime(publishTime);
+			b.setAuthor(author);
+			b.setPrice(price);
+			bookDao.modify(b);
+			return b;
+		}
+	}
+
+	public List<Book> findBooksByName(String name) {
+		if (name == null || name.equals("")) {
+			return null;
+		} else {
+			return bookDao.findBooksByName(name);
+		}
+	}
+
+	public List<Book> findBooksBySynopsis(String synopsis) {
+		if (synopsis == null || synopsis.equals("")) {
+			return null;
+		} else {
+			return bookDao.findBooksBySynopsis(synopsis);
+		}
+	}
+
+	public List<Book> findBookByPublishTime(String publishTime) {
+		if (publishTime == null || publishTime.equals("")) {
+			return null;
+		} else {
+			return bookDao.findBookByPublishTime(publishTime);
+		}
+	}
+
+	public List<Book> findBookByAuthor(String author) {
+		if (author == null || author.equals("")) {
+			return null;
+		} else {
+			return bookDao.findBookByAuthor(author);
+		}
+	}
+
+	public List<Book> getAllBook() {
+		return bookDao.getBookList();
+	}
+
+	public Book findBooksByISBN(String ISBN) {
+		if (ISBN == null || ISBN.equals("")) {
+			return null;
+		} else {
+			return bookDao.findBooksByISBN(ISBN);
+		}
+	}
+
+	public Book findBooksById(int id) {
+		return bookDao.findBooksById(id);
+	}
+
+	public List<Book> searchBooks(String type, String value) {
+		if (type.equals("ISBN")) {
+			List<Book> bookList = null;
+			Book book = findBooksByISBN(value);
+			if (book != null) {
+				bookList = new ArrayList<Book>();
+				bookList.add(book);
+			}
+			return bookList;
+		} else if (type.equals("name")) {
+			return findBooksByName(value);
+		} else if (type.equals("synopsis")) {
+			return findBooksBySynopsis(value);
+		} else if (type.equals("publishTime")) {
+			return findBookByPublishTime(value);
+		} else if (type.equals("author")) {
+			return findBookByAuthor(value);
+		} else {
+			return null;
+		}
+	}
+
+	public List<Book> findBookByPublish(int publishId) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+
+}

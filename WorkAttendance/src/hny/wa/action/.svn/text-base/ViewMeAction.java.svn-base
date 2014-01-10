@@ -1,0 +1,38 @@
+package com.bjtu.lms.action.user;
+
+import java.util.Map;
+
+import com.bjtu.lms.model.User;
+import com.bjtu.lms.service.UserService;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ * 
+ * @author yilee
+ */
+public class ViewMeAction extends ActionSupport {
+
+	private UserService userService;
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		ActionContext actionContext = ActionContext.getContext();
+		Map session = actionContext.getSession();
+		User u = (User) session.get("user");
+		if (u != null) {
+			u = userService.findUserById(u.getId());
+			session.put("user", u);
+			session.put("userType", u.getUserType());
+		}
+		return SUCCESS;
+	}
+}

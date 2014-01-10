@@ -1,0 +1,37 @@
+body {
+  font: normal medium/1.4 sans-serif;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
+
+
+.options a { display: block; width: 160px; height: 115px; border-radius: 50%; border: 5px solid RGB(210,232,234); 
+			color: RGB(118,155,179); text-decoration: none; font-size: 25px;font-weight:bold;text-align: center; padding-top: 40px; font-family: 'GillSansLight';  
+			margin: 0 auto; background:#f6f7f1 url(bg-8bed488ceb8bcd20ff2e633b62c9242c.png) repeat 0 0}
+.options a big { display: block; font-size: 50px; }
+.options a small { display: block; font-size: 50px;}
+
+.options a:hover {background: rgba(175,216,199,0.25);}
+.options {
+list-style: none;
+}
+.options1 a { display: block; width: 160px; height: 115px; border-radius: 50%; border: 5px solid RGB(132,160,153);color: RGB(132,160,153); text-decoration: none; font-size: 25px;font-weight:bold;text-align: center; padding-top: 40px; font-family: 'GillSansLight';  
+			margin: 0 auto; background:#f6f7f1 url(bg-8bed488ceb8bcd20ff2e633b62c9242c.png) repeat 0 0}
+.options1 a big { display: block; font-size: 50px; }
+.options1 a small { display: block; font-size: 50px;}
+
+.options1 a:hover {color:#f6f7f1 url(bg-8bed488ceb8bcd20ff2e633b62c9242c.png) repeat 0 0}
+.options {
+list-style: none;
+}
+

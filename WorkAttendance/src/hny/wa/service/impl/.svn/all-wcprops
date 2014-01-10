@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/service/impl
+END
+BorrowHistoryServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/service/impl/BorrowHistoryServiceImpl.java
+END
+SettingServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/4/trunk/LibraryManagementSystem/src/com/bjtu/lms/service/impl/SettingServiceImpl.java
+END
+UserServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/7/trunk/LibraryManagementSystem/src/com/bjtu/lms/service/impl/UserServiceImpl.java
+END
+AdminServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/service/impl/AdminServiceImpl.java
+END
+BookServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/service/impl/BookServiceImpl.java
+END
+BorrowServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/8/trunk/LibraryManagementSystem/src/com/bjtu/lms/service/impl/BorrowServiceImpl.java
+END

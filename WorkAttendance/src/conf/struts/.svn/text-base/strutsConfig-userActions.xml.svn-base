@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!--JSON-->
+	<package name="user-common-json" extends="json-default">
+		<!--普通用户注册-->
+		<action name="registAction" class="registAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!--普通用户登陆-->
+		<action name="loginAction" class="loginAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	<!--default-->
+	<package name="user-common-default" extends="struts-default">
+		<action name="me" class="me">
+			<result name="success">/user/me.jsp</result>
+		</action>
+		<action name="logout" class="logout">
+			<result name="success" type="redirect">viewBookListAction</result>
+		</action>
+	</package>
+
+	<!--default-->
+	<package name="user-admin-default" extends="json-default">
+		<!--用户列表-->
+		<action name="viewUserListAction" class="viewUserListAction">
+			<result name="success">user/userList.jsp</result>
+		</action>
+		<!--增加用户-->
+		<action name="addUserAction" class="addUserAction">
+			<result name="success" type="redirect">admin/viewUserListAction</result>
+		</action>
+		<!--进入修改用户界面-->
+		<action name="beginModifyUserAction" class="modifyUserAction"
+			method="beginModify">
+			<result name="success">user/modifyUser.jsp</result>
+			<result name="error">user/404.jsp</result>
+		</action>
+		<action name="modifyUserAction" class="modifyUserAction">
+			<result name="success" type="redirect">admin/viewUserListAction</result>
+			<result name="error">user/404.jsp</result>
+		</action>
+
+
+	</package>
+
+	<!--default-->
+	<package name="user-admin-json" extends="json-default">
+		<!--删除用户-->
+		<action name="deleteUserAction" class="deleteUserAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!--用户罚金清零-->
+		<action name="resetFineAction" class="resetFineAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!--更改用户状态-->
+		<action name="resetTypeAction" class="resetTypeAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>

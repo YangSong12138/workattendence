@@ -1,0 +1,74 @@
+package com.bjtu.lms.action.user;
+
+import com.bjtu.lms.model.User;
+import com.bjtu.lms.service.UserService;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import java.util.Map;
+
+/**
+ *
+ * @author yilee
+ */
+public class LoginAction extends ActionSupport {
+
+	private UserService userService;
+	private String username;
+	private String password;
+	private String result;
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		Map session = ActionContext.getContext().getSession();
+		if (username == null || password == null || username.equals("") || password.equals("")) {
+			result = "{suc:0, msg:'请输入您的用户名、密码...'}";
+			session.put("user", null);
+			session.put("userType",null);
+		} else {
+			User u = userService.login(username, password);
+			if (u != null) {
+				result = "{suc:1, msg:'登陆成功...'}";
+				System.out.println("name= " + u.getName());
+				session.put("user", u);
+				session.put("userType", u.getUserType());
+			} else {
+				result = "{suc:0, msg:'登陆失败...'}";
+				session.put("user", null);
+				session.put("userType",null);
+			}
+		}
+		return SUCCESS;
+	}
+}

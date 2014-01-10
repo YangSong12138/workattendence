@@ -1,0 +1,45 @@
+package com.bjtu.lms.dao.impl;
+
+import com.bjtu.lms.dao.BorrowHistoryDao;
+import com.bjtu.lms.model.BorrowHistory;
+import java.util.List;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+/**
+ *
+ * @author yilee
+ */
+public class BorrowHistoryDaoImpl extends HibernateDaoSupport implements BorrowHistoryDao {
+
+	public void insert(BorrowHistory borrowHistory) {
+		getHibernateTemplate().save(borrowHistory);
+	}
+
+	public void modify(BorrowHistory borrowHistory) {
+		getHibernateTemplate().update(borrowHistory);
+	}
+
+	public void delete(BorrowHistory borrowHistory) {
+		getHibernateTemplate().delete(borrowHistory);
+	}
+
+	public List<BorrowHistory> getBorrowHistoryList() {
+		List bh = getHibernateTemplate().find("from BorrowHistory");
+		return bh;
+	}
+
+	public BorrowHistory getBorrowHistoryById(int id) {
+		List bh = getHibernateTemplate().find("from BorrowHistory bh where bh.id = ?", id);
+		return bh.isEmpty() ? null : (BorrowHistory) bh.get(0);
+	}
+
+	public List<BorrowHistory> getBorrowHistoryByBookId(int bookId) {
+		List bh = getHibernateTemplate().find("from BorrowHistory bh where bh.bookId = ?", bookId);
+		return bh;
+	}
+
+	public List<BorrowHistory> getBorrowHistoryListByUserId(int userId) {
+		List bhl = getHibernateTemplate().find("from BorrowHistory bh where bh.userId = ?", userId);
+		return bhl;
+	}
+}

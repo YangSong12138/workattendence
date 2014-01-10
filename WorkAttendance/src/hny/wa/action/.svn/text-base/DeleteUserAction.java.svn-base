@@ -1,0 +1,52 @@
+package com.bjtu.lms.action.user;
+
+import com.bjtu.lms.model.User;
+import com.bjtu.lms.service.UserService;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ *
+ * @author yilee
+ */
+public class DeleteUserAction extends ActionSupport {
+
+	private int id;
+	private UserService userService;
+	private String result;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		User u = userService.findUserById(id);
+		if (u == null) {
+			result = "{suc:0, msg:'用户不存在.'}";
+		} else {
+			userService.deleteUserById(id);
+			result = "{suc:1, msg:'删除成功.'}";
+		}
+		return SUCCESS;
+	}
+}

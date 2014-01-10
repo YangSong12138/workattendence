@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!--default-->
+	<package name="book-common-default" extends="struts-default">
+		<!--图书列表-->
+		<action name="viewBookListAction" class="viewBookListAction" >
+			<result name="success">/main.jsp</result>
+		</action>
+		<!--搜索列表-->
+		<action name="searchBookAction" class="searchBookAction" >
+			<result name="success">/main.jsp</result>
+		</action>
+		<!--管理员图书列表-->
+		<action name="adminViewBookListAction" class="adminViewBookListAction" >
+			<result name="success">index.jsp</result>
+		</action>
+
+		
+	</package>
+	<!--JSON-->
+	<package name="book-common-json" extends="json-default">
+		<!--图书详情-->
+		<action name="viewBookAction" class="viewBookAction" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	
+	<!--defalut-->
+	<package name="book-admin-default" extends="struts-default">
+		<!--增加图书-->
+		<action name="addBookAction" class="addBookAction" >
+			<result name="success" type="redirect">admin/adminViewBookListAction</result>
+		</action>
+		<!--修改图书-->
+		<action name="beginModifyBookAction" class="modifyBookAction" method="beginModify">
+			<result name="success">book/modifyBook.jsp</result>
+			<result name="error">book/404.jsp</result>
+		</action>
+		<action name="modifyBookAction" class="modifyBookAction">
+			<result name="success" type="redirect">admin/adminViewBookListAction</result>
+			<result name="error">book/404.jsp</result>
+		</action>
+		
+		
+	</package>
+	<!--defalut-->
+	<package name="book-admin-json" extends="json-default">
+		<!--删除图书-->
+		<action name="deleteBookAction" class="deleteBookAction" >
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>

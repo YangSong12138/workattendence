@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "/WEB-INF/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="bookDao" class="com.bjtu.lms.dao.impl.BookDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="userDao" class="com.bjtu.lms.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="settingDao" class="com.bjtu.lms.dao.impl.SettingDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="borrowDao" class="com.bjtu.lms.dao.impl.BorrowDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="borrowHistoryDao" class="com.bjtu.lms.dao.impl.BorrowHistoryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+	<bean id="checkExpiredTask" class="com.bjtu.lms.util.CheckExpiredTask">
+		<property name="borrowDao">
+			<ref local="borrowDao" />
+		</property>
+		<property name="borrowHistoryDao">
+			<ref local="borrowHistoryDao" />
+		</property>
+		<property name="settingDao">
+			<ref local="settingDao" />
+		</property>
+		<property name="bookDao">
+			<ref local="bookDao" />
+		</property>
+		<property name="userDao">
+			<ref local="userDao" />
+		</property>
+	</bean>
+
+	<bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="delay" value="5000"></property>
+		<property name="period" value="500000"></property>
+		<property name="timerTask" ref="checkExpiredTask"></property>
+	</bean>
+
+	<bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref bean="scheduledTask"></ref>
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "/WEB-INF/dtd/spring-beans.dtd">
+<beans default-lazy-init="true">
+
+	<bean id="bookService" parent="transactionProxy">
+		<property name="target">
+			<bean class="com.bjtu.lms.service.impl.BookServiceImpl">
+				<property name="bookDao">
+					<ref local="bookDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="settingDao" class="com.bjtu.lms.dao.impl.SettingDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="userDao" class="com.bjtu.lms.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="bookDao" class="com.bjtu.lms.dao.impl.BookDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="borrowDao" class="com.bjtu.lms.dao.impl.BorrowDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="borrowHistoryDao" class="com.bjtu.lms.dao.impl.BorrowHistoryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="borrowHistoryService" parent="transactionProxy">
+		<property name="target">
+			<bean class="com.bjtu.lms.service.impl.BorrowHistoryServiceImpl">
+				<property name="borrowHistoryDao">
+					<ref local="borrowHistoryDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="borrowService" parent="transactionProxy">
+		<property name="target">
+			<bean class="com.bjtu.lms.service.impl.BorrowServiceImpl">
+				<property name="bookDao">
+					<ref local="bookDao" />
+				</property>
+				<property name="settingDao">
+					<ref local="settingDao" />
+				</property>
+				<property name="userDao">
+					<ref local="userDao" />
+				</property>
+				<property name="borrowDao">
+					<ref local="borrowDao" />
+				</property>
+				<property name="borrowHistoryService">
+					<ref local="borrowHistoryService" />
+				</property>
+				<property name="borrowHistoryDao">
+					<ref local="borrowHistoryDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="borrowBookAction" class="com.bjtu.lms.action.borrow.BorrowBookAction"
+		lazy-init="false">
+		<property name="borrowService">
+			<ref local="borrowService" />
+		</property>
+	</bean>
+
+	<bean id="returnBookAction" class="com.bjtu.lms.action.borrow.ReturnBookAction"
+		lazy-init="false">
+		<property name="borrowService">
+			<ref local="borrowService" />
+		</property>
+	</bean>
+
+	<bean id="currentBorrowAction" class="com.bjtu.lms.action.borrow.CurrentBorrowAction"
+		lazy-init="false">
+		<property name="borrowService">
+			<ref local="borrowService" />
+		</property>
+		<property name="bookService">
+			<ref local="bookService" />
+		</property>
+		<property name="borrowHistoryService">
+			<ref local="borrowHistoryService" />
+		</property>
+	</bean>
+
+	<bean id="historyBorrowAction" class="com.bjtu.lms.action.borrow.HistoryBorrowAction"
+		lazy-init="false">
+		<property name="bookService">
+			<ref local="bookService" />
+		</property>
+		<property name="borrowHistoryService">
+			<ref local="borrowHistoryService" />
+		</property>
+	</bean>
+
+
+</beans>

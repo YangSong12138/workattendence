@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "/WEB-INF/dtd/spring-beans.dtd">
+<beans default-lazy-init="true">
+
+	<bean id="attendanceDao" class="hny.wa.dao.impl.AttendanceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userDao" class="hny.wa.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="departmentDao" class="hny.wa.dao.impl.DepartmentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="departmentService" parent="transactionProxy">
+		<property name="target">
+			<bean class="hny.wa.service.impl.DepartmentServiceImpl">
+				<property name="departmentDao">
+					<ref local="departmentDao" />
+				</property>	
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="userService" parent="transactionProxy">
+		<property name="target">
+			<bean class="hny.wa.service.impl.UserServiceImpl">
+				<property name="userDao">
+					<ref local="userDao" />
+				</property>	
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="attendanceService" parent="transactionProxy">
+		<property name="target">
+			<bean class="hny.wa.service.impl.AttendanceServiceImpl">
+				<property name="attendanceDao">
+					<ref local="attendanceDao" />
+				</property>	
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="signinAction" class="hny.wa.action.SigninAction"
+		lazy-init="false">
+		<property name="attendanceService">
+			<ref local="attendanceService" />
+		</property>
+	</bean>
+	
+	<bean id="signoutAction" class="hny.wa.action.SignoutAction"
+		lazy-init="false">
+		<property name="attendanceService">
+			<ref local="attendanceService" />
+		</property>
+	</bean>
+	
+	<bean id="countAction" class="hny.wa.action.CountAction"
+		lazy-init="false">
+		<property name="departmentService">
+			<ref local="departmentService" />
+		</property>
+		<property name="attendanceService">
+			<ref local="attendanceService" />
+		</property>
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+	
+
+</beans>

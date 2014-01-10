@@ -1,0 +1,58 @@
+package com.bjtu.lms.action.user;
+
+import com.bjtu.lms.model.User;
+import com.bjtu.lms.model.UserType;
+import com.bjtu.lms.service.UserService;
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ * 
+ * @author yilee
+ */
+public class ResetTypeAction extends ActionSupport {
+
+	private String id;
+	private UserService userService;
+	private String result;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		User u = userService.findUserById(Integer.parseInt(id));
+		UserType userType = u.getUserType();
+		if (userType.getType().equals("正常")) {
+			u.getUserType().setType("禁用");
+			userService.modify(u);
+			result = "{suc:1, msg:'调整为禁用'}";
+		} else if (userType.getType().equals("禁用")) {
+			u.getUserType().setType("正常");
+			userService.modify(u);
+			result = "{suc:1, msg:'调整为正常'}";
+		}
+		return SUCCESS;
+	}
+
+}

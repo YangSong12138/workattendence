@@ -1,0 +1,34 @@
+package com.bjtu.lms.dao;
+
+import com.bjtu.lms.model.Setting;
+
+/**
+ * 系统设置类
+ * 
+ * @author yilee
+ * 
+ */
+public interface SettingDao {
+
+	/**
+	 * 保存系统设置
+	 * 
+	 * @param setting
+	 */
+	public void saveSetting(Setting setting);
+
+	/**
+	 * 更新系统设置
+	 * 
+	 * @param system
+	 */
+	public void updateSetting(Setting setting);
+
+	/**
+	 * 得到系统设置信息
+	 * 
+	 * @return
+	 */
+	public Setting getSetting();
+
+}

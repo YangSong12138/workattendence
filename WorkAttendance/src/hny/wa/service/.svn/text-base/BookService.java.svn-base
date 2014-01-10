@@ -1,0 +1,36 @@
+package com.bjtu.lms.service;
+
+import com.bjtu.lms.model.Book;
+import java.util.List;
+
+/**
+ *
+ * @author yilee
+ */
+public interface BookService {
+
+	public Book saveBook(String ISBN, String name, String synopsis, int publishId, String publishTime, String author, double price);
+
+	public boolean deleteBookById(int id);
+
+	public Book modifyBook(int id, String ISBN, String name, String synopsis, int publishId, String publishTime, String author, double price);
+
+	public Book findBooksByISBN(String ISBN);
+
+	public Book findBooksById(int id);
+
+	public List<Book> findBooksByName(String name);
+
+	public List<Book> findBooksBySynopsis(String synopsis);
+
+	public List<Book> findBookByPublishTime(String publishTime);
+
+	public List<Book> findBookByPublish(int publishId);
+
+	public List<Book> findBookByAuthor(String author);
+
+	public List<Book> getAllBook();
+
+	public List<Book> searchBooks(String type, String value);
+
+}

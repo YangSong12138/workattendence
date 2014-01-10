@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="wa.hny.model">
+	<class name="hny.wa.model.Attendance" table="attendance">
+		<id column="id" name="id" type="integer">
+			<generator class="increment" />
+		</id>
+		<property column="userid" name="userid" type="string" />
+		<property column="departmentid" name="departmentid" type="int" />
+		<property column="cometime" name="cometime" type="string" />
+		<property column="gotime" name="gotime" type="string" />
+		<property column="comestate" name="comestate" type="int" />
+		<property column="gostate" name="gostate" type="int" />
+		<property column="state" name="state" type="int" />
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!--JSON-->
+	<package name="default" extends="struts-default">
+		<action name="applyAction" class="applyAction">
+			<result name="success">approved_manager.jsp</result> 
+		</action>
+		<action name="staffApplyHistoryAction" class="staffApplyHistoryAction">
+			<result name="success">approved_staff.jsp</result> 
+		</action>
+		<action name="approveAction" class="approveAction">
+		<!-- <result name="success">approved_manager.jsp</result>  -->
+			<result name="success" type="redirectAction">applyAction</result> 
+		</action>	
+		
+		<!--用户提交出差、请假、补签的申请-->
+		<action name="SubmitApplyAction" class="SubmitApplyAction">
+			<result name="success">leave.jsp</result>
+            <result name="invalid.token">repeat.jsp</result>
+              <result name="error">leave.jsp</result>
+           <interceptor-ref name = "token" ></interceptor-ref >
+           <interceptor-ref name = "defaultStack" ></interceptor-ref >
+		</action>
+			
+	</package>
+	
+	<package name="admin" extends="struts-default">
+		<action name="applyAdminAction" class="applyAdminAction">
+			<result name="success">approved_admin.jsp</result> 
+		</action>
+		
+		<action name="adminApprovedAction" class="adminApprovedAction">
+			<result type="redirectAction" name="success">applyAdminAction</result> 
+		</action>
+	</package>
+	
+</struts>

@@ -1,0 +1,91 @@
+package com.bjtu.lms.action.user;
+
+import com.bjtu.lms.model.User;
+import com.bjtu.lms.service.UserService;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import java.util.Map;
+
+/**
+ * 
+ * @author yilee
+ */
+public class RegistAction extends ActionSupport {
+
+	private String name;
+	private UserService userService;
+	private String username;
+	private String password;
+	private String result;
+	private String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		Map session = ActionContext.getContext().getSession();
+		if (username == null || password == null || name == null
+				|| username.equals("") || password.equals("")
+				|| name.equals("") || email == null || email.equals("")) {
+			result = "{suc:0, msg:'请输入您的用户名、密码以及姓名...'}";
+			session.put("user", null);
+		} else {
+			User u = userService.register(name, username, password, email);
+			if (u != null) {
+				result = "{suc:1, msg:'注册成功'}";
+				session.put("user", u);
+				session.put("userType", u.getUserType());
+			} else {
+				result = "{suc:0, msg:'有户名已经存在...'}";
+				session.put("user", null);
+			}
+		}
+		return SUCCESS;
+	}
+}

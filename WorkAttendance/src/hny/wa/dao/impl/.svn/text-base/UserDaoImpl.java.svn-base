@@ -1,0 +1,52 @@
+package com.bjtu.lms.dao.impl;
+
+import com.bjtu.lms.dao.UserDao;
+import com.bjtu.lms.model.User;
+import java.util.List;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+/**
+ *
+ * @author yilee
+ */
+public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
+
+	public User findUserByUserName(String username) {
+		List ul = getHibernateTemplate().find("from User u where u.username = ?", username);
+		if (ul.isEmpty()) {
+			return null;
+		} else {
+			return (User) ul.get(0);
+		}
+	}
+
+	public User findUserById(int id) {
+		List ul = getHibernateTemplate().find("from User u where u.id = ?", id);
+		if (ul.isEmpty()) {
+			return null;
+		} else {
+			return (User) ul.get(0);
+		}
+	}
+
+	public void save(User user) {
+		getHibernateTemplate().save(user);
+	}
+
+	public List getUserList() {
+		List userList = getHibernateTemplate().find("from User");
+		if (userList.size() > 0) {
+			return userList;
+		} else {
+			return null;
+		}
+	}
+
+	public void deleteUser(User user) {
+		getHibernateTemplate().delete(user);
+	}
+
+	public void modifyUser(User user) {
+		getHibernateTemplate().update(user);
+	}
+}

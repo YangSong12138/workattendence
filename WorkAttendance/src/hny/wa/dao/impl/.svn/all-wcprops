@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/dao/impl
+END
+BookDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/dao/impl/BookDaoImpl.java
+END
+BorrowDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/5/trunk/LibraryManagementSystem/src/com/bjtu/lms/dao/impl/BorrowDaoImpl.java
+END
+BorrowHistoryDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/dao/impl/BorrowHistoryDaoImpl.java
+END
+SettingDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/4/trunk/LibraryManagementSystem/src/com/bjtu/lms/dao/impl/SettingDaoImpl.java
+END
+UserDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/dao/impl/UserDaoImpl.java
+END
+AdminDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/dao/impl/AdminDaoImpl.java
+END

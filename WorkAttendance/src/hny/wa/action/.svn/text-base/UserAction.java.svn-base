@@ -1,0 +1,9 @@
+package com.bjtu.lms.action.user;
+
+/**
+ *
+ * @author yilee
+ */
+public class UserAction {
+	
+}

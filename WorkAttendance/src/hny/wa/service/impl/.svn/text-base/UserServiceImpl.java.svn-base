@@ -1,0 +1,167 @@
+package com.bjtu.lms.service.impl;
+
+import com.bjtu.lms.dao.UserDao;
+import com.bjtu.lms.model.User;
+import com.bjtu.lms.model.UserType;
+import com.bjtu.lms.service.UserService;
+import java.util.List;
+
+/**
+ * 
+ * @author yilee
+ */
+public class UserServiceImpl implements UserService {
+
+	private UserDao userDao;
+
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
+	public User register(String name, String username, String password) {
+		if (findUserByUsername(username) != null) {
+			return null;
+		} else {
+			User u = new User();
+			u.setName(name);
+			u.setUsername(username);
+			u.setPassword(password);
+			UserType userType = new UserType();
+			userType.setType("正常");
+			userType.setFine(0);
+			userType.setUser(u);
+			u.setUserType(userType);
+			userDao.save(u);
+			return u;
+		}
+	}
+
+	public User login(String username, String password) {
+		User u = findUserByUsername(username);
+		if (u == null) {
+			return null;
+		} else {
+			if (u.getPassword().equals(password)) {
+				return u;
+			} else {
+				return null;
+			}
+		}
+	}
+
+	public User findUserById(int id) {
+		return userDao.findUserById(id);
+	}
+
+	public List getAllUser() {
+		return userDao.getUserList();
+	}
+
+	public boolean deleteUserById(int id) {
+		User u = findUserById(id);
+		if (u == null) {
+			return false;
+		} else {
+			userDao.deleteUser(u);
+			return true;
+		}
+	}
+
+	public User findUserByUsername(String username) {
+		if (username == null || username.equals("")) {
+			return null;
+		} else {
+			return userDao.findUserByUserName(username);
+		}
+	}
+
+	public boolean addUser(String name, String username, String password,
+			String phone) {
+		if (findUserByUsername(username) != null) {
+			return false;
+		} else {
+			User u = new User();
+			u.setName(name);
+			u.setUsername(username);
+			u.setPassword(password);
+			u.setPhone(phone);
+			userDao.save(u);
+			return true;
+		}
+	}
+
+	public User modify(int id, String name, String username, String password,
+			String phone) {
+		User u = findUserById(id);
+		if (u == null) {
+			return null;
+		} else {
+			u.setName(name);
+			u.setUsername(username);
+			u.setPassword(password);
+			u.setPhone(phone);
+			userDao.modifyUser(u);
+			return u;
+		}
+	}
+
+	public User register(String name, String username, String password,
+			String email) {
+		if (findUserByUsername(username) != null) {
+			return null;
+		} else {
+			User u = new User();
+			u.setName(name);
+			u.setUsername(username);
+			u.setPassword(password);
+			u.setEmail(email);
+			userDao.save(u);
+			return u;
+		}
+	}
+
+	public User modify(int id, String name, String username, String password,
+			String phone, String email) {
+		User u = findUserById(id);
+		if (u == null) {
+			return null;
+		} else {
+			u.setName(name);
+			u.setUsername(username);
+			u.setPassword(password);
+			u.setPhone(phone);
+			u.setEmail(email);
+			userDao.modifyUser(u);
+			return u;
+		}
+	}
+
+	public boolean addUser(String name, String username, String password,
+			String phone, String email) {
+		if (findUserByUsername(username) != null) {
+			return false;
+		} else {
+			User u = new User();
+			u.setName(name);
+			u.setUsername(username);
+			u.setPassword(password);
+			u.setPhone(phone);
+			u.setEmail(email);
+			UserType userType = new UserType();
+			userType.setType("正常");
+			userType.setFine(0);
+			userType.setUser(u);
+			u.setUserType(userType);
+			userDao.save(u);
+			return true;
+		}
+	}
+
+	public void modify(User user) {
+		userDao.modifyUser(user);
+	}
+}

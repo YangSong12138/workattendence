@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!--JSON-->
+	<package name="system-admin-json" extends="json-default">
+		<!--管理员-->
+		<action name="settingsAction" class="settingsAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="getSettingAction" class="getSettingAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+	</package>
+
+
+</struts>

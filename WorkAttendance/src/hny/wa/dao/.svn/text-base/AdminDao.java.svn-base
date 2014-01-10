@@ -1,0 +1,14 @@
+package com.bjtu.lms.dao;
+
+import com.bjtu.lms.model.Administrator;
+
+/**
+ *
+ * @author yilee
+ */
+public interface AdminDao {
+
+	public Administrator findAdminByUserName(String username);
+
+	public Administrator findAdminById(int id);
+}

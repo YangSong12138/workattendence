@@ -1,0 +1,60 @@
+package com.bjtu.lms.dao.impl;
+
+import com.bjtu.lms.dao.BookDao;
+import com.bjtu.lms.model.Book;
+import java.util.List;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+/**
+ *
+ * @author yilee
+ */
+public class BookDaoImpl extends HibernateDaoSupport implements BookDao {
+
+	public Book findBooksById(int id) {
+		List bl = getHibernateTemplate().find("from Book b where b.id = ?", id);
+		return bl.isEmpty() ? null : (Book) bl.get(0);
+	}
+
+	public List<Book> findBooksByName(String name) {
+		List<Book> bl = getHibernateTemplate().find("from Book b where b.name like ?", "%" + name + "%");
+		return bl;
+	}
+
+	public List<Book> findBooksBySynopsis(String synopsis) {
+		List<Book> bl = getHibernateTemplate().find("from Book b where b.synopsis like ?", "%" + synopsis + "%");
+		return bl;
+	}
+
+	public List<Book> findBookByPublishTime(String publishTime) {
+		List<Book> bl = getHibernateTemplate().find("from Book b where b.synopsis = ?", publishTime);
+		return bl;
+	}
+
+	public void save(Book book) {
+		getHibernateTemplate().save(book);
+	}
+
+	public void delete(Book book) {
+		getHibernateTemplate().delete(book);
+	}
+
+	public void modify(Book book) {
+		getHibernateTemplate().update(book);
+	}
+
+	public List<Book> getBookList() {
+		List<Book> bl = getHibernateTemplate().find("from Book");
+		return bl;
+	}
+
+	public List<Book> findBookByAuthor(String author) {
+		List<Book> bl = getHibernateTemplate().find("from Book b where b.author like ?", "%" + author + "%");
+		return bl;
+	}
+
+	public Book findBooksByISBN(String ISBN) {
+		List bl = getHibernateTemplate().find("from Book b where b.ISBN = ?", ISBN);
+		return bl.isEmpty() ? null : (Book) bl.get(0);
+	}
+}

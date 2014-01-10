@@ -1,0 +1,38 @@
+.tt td{
+	padding:5px 10px ;
+	border-right:1px solid RGB(221,221,221);
+	border-bottom:1px solid RGB(221,221,221);
+	min-width:100px;
+}
+
+.tt tr:nth-child(2n){
+	background:RGB(240,240,240);
+}
+.tt tr:nth-child(2n+1){
+}
+.tt{
+	border-radius:10px;
+	border:1px solid RGB(221,221,221);
+}
+.head{
+	background:RGB(132,160,153);
+	color:white;
+	font-weight:900;
+}
+.normal{
+	color:RGB(70,136,71);
+	
+	font-weight:900;
+}
+.not{
+	color:#DC143C;
+	font-weight:900;
+}
+.late{
+	color:#DAA520;
+	font-weight:900;
+}
+.early{
+	color:#DAA520;
+	font-weight:900;
+}

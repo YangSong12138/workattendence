@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "/WEB-INF/dtd/spring-beans.dtd">
+<beans default-lazy-init="true">
+
+	<bean id="userDao" class="com.bjtu.lms.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="userService" parent="transactionProxy">
+		<property name="target">
+			<bean class="com.bjtu.lms.service.impl.UserServiceImpl">
+				<property name="userDao">
+					<ref local="userDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+
+	<bean id="registAction" class="com.bjtu.lms.action.user.RegistAction"
+		lazy-init="false">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+
+	<bean id="loginAction" class="com.bjtu.lms.action.user.LoginAction"
+		lazy-init="false">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+
+	<bean id="me" class="com.bjtu.lms.action.user.ViewMeAction"
+		lazy-init="false">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+
+	<bean id="logout" class="com.bjtu.lms.action.user.LogoutAction"
+		lazy-init="false">
+	</bean>
+
+	<bean id="viewUserListAction" class="com.bjtu.lms.action.user.ViewUserListAction"
+		lazy-init="false">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+
+	<bean id="deleteUserAction" class="com.bjtu.lms.action.user.DeleteUserAction"
+		lazy-init="false">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+
+	<bean id="addUserAction" class="com.bjtu.lms.action.user.AddUserAction"
+		lazy-init="false">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+
+	<bean id="modifyUserAction" class="com.bjtu.lms.action.user.ModifyUserAction"
+		lazy-init="false">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+
+	<bean id="resetFineAction" class="com.bjtu.lms.action.user.ResetFineAction"
+		lazy-init="false">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+
+	<bean id="resetTypeAction" class="com.bjtu.lms.action.user.ResetTypeAction"
+		lazy-init="false">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+
+</beans>

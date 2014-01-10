@@ -1,0 +1,47 @@
+package com.bjtu.lms.service.impl;
+
+import com.bjtu.lms.dao.SettingDao;
+import com.bjtu.lms.model.Setting;
+import com.bjtu.lms.service.SettingService;
+
+public class SettingServiceImpl implements SettingService {
+
+	private SettingDao settingDao;
+
+	public SettingDao getSettingDao() {
+		return settingDao;
+	}
+
+	public void setSettingDao(SettingDao settingDao) {
+		this.settingDao = settingDao;
+	}
+
+	public Setting getSetting() {
+		return settingDao.getSetting();
+	}
+
+	public String setSetting(int maxBorrow, int maxDays) {
+		String result = "";
+		if (maxBorrow <= 0) {
+			result = "{suc:0, msg:'最大借阅数不能小于0..'}";
+			return result;
+		} else if (maxDays <= 0) {
+			result = "{suc:0, msg:'最大借阅天数不能小于0..'}";
+			return result;
+		}
+		Setting s = getSetting();
+		if (s == null) {
+			s = new Setting();
+			s.setMaxBorrow(maxBorrow);
+			s.setMaxDays(maxDays);
+			settingDao.saveSetting(s);
+		} else {
+			s.setMaxBorrow(maxBorrow);
+			s.setMaxDays(maxDays);
+			settingDao.updateSetting(s);
+		}
+		result = "{suc:1, msg:'系统修改成功'}";
+		return result;
+	}
+
+}

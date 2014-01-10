@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/conf/spring
+END
+applicationContext-bookService.xml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/conf/spring/applicationContext-bookService.xml
+END
+applicationContext-borrowService.xml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/4/trunk/LibraryManagementSystem/src/conf/spring/applicationContext-borrowService.xml
+END
+applicationContext-util.xml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/8/trunk/LibraryManagementSystem/src/conf/spring/applicationContext-util.xml
+END
+applicationContext-userService.xml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/8/trunk/LibraryManagementSystem/src/conf/spring/applicationContext-userService.xml
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/conf/spring/applicationContext.xml
+END
+applicationContext-systemService.xml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/4/trunk/LibraryManagementSystem/src/conf/spring/applicationContext-systemService.xml
+END
+applicationContext-adminService.xml
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/conf/spring/applicationContext-adminService.xml
+END

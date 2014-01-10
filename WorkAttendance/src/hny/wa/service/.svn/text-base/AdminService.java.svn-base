@@ -1,0 +1,15 @@
+package com.bjtu.lms.service;
+
+import com.bjtu.lms.model.Administrator;
+
+/**
+ * @author yilee
+ */
+public interface AdminService {
+
+	public Administrator login(String username, String password);
+
+	public Administrator findAdminById(int id);
+
+	public Administrator findAdminByUsername(String username);
+}

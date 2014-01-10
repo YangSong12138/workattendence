@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user
+END
+DeleteUserAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/DeleteUserAction.java
+END
+ResetFineAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/7/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/ResetFineAction.java
+END
+ResetTypeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/8/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/ResetTypeAction.java
+END
+ViewUserListAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/ViewUserListAction.java
+END
+ModifyUserAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/5/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/ModifyUserAction.java
+END
+AddUserAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/5/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/AddUserAction.java
+END
+LoginAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/6/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/LoginAction.java
+END
+LogoutAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/6/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/LogoutAction.java
+END
+ViewMeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/8/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/ViewMeAction.java
+END
+RegistAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/6/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/RegistAction.java
+END
+UserAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/com/bjtu/lms/action/user/UserAction.java
+END

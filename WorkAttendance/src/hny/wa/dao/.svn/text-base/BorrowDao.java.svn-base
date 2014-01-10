@@ -1,0 +1,22 @@
+package com.bjtu.lms.dao;
+
+import com.bjtu.lms.model.Borrow;
+import java.util.List;
+
+/**
+ * 
+ * @author yilee
+ */
+public interface BorrowDao {
+
+	public void borrow(Borrow borrow);
+
+	public Borrow getBorrowByBookId(int bookId);
+
+	public void delete(Borrow borrow);
+
+	public List<Borrow> getBorrowListByUserId(int userId);
+
+	public List<Borrow> getBorrowList();
+
+}

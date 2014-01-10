@@ -1,0 +1,24 @@
+package com.bjtu.lms.dao;
+
+import com.bjtu.lms.model.User;
+import java.util.List;
+
+/**
+ *
+ * @author yilee
+ */
+public interface UserDao {
+
+	public User findUserByUserName(String username);
+
+	public User findUserById(int id);
+
+	public void save(User user);
+
+	public List getUserList();
+
+	public void deleteUser(User user);
+
+	public void modifyUser(User user);
+
+}

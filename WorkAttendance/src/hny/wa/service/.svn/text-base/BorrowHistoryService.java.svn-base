@@ -1,0 +1,22 @@
+package com.bjtu.lms.service;
+
+import com.bjtu.lms.model.BorrowHistory;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author yilee
+ */
+public interface BorrowHistoryService {
+
+	public void insert(int userId, int bookId);
+
+	public void update(int id, int userId, int bookId, Date borrowDate, Date returnDate, int reBorrowTimes);
+
+	public BorrowHistory getBorrowHistoryById(int id);
+
+	public BorrowHistory getBorrowHistoryByBookId(int bookId);
+
+	public List<BorrowHistory> getBorrowHistoryListByUserId(int userId);
+}

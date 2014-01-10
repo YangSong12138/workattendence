@@ -1,0 +1,23 @@
+package com.bjtu.lms.dao.impl;
+
+import com.bjtu.lms.dao.AdminDao;
+import com.bjtu.lms.model.Administrator;
+import java.util.List;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+/**
+ *
+ * @author yilee
+ */
+public class AdminDaoImpl extends HibernateDaoSupport implements AdminDao {
+
+	public Administrator findAdminByUserName(String username) {
+		List al = getHibernateTemplate().find("from Administrator a where a.username = ?", username);
+		return al.isEmpty() ? null : (Administrator) al.get(0);
+	}
+
+	public Administrator findAdminById(int id) {
+		List al = getHibernateTemplate().find("from Administrator a where a.id = ?", id);
+		return al.isEmpty() ? null : (Administrator) al.get(0);
+	}
+}

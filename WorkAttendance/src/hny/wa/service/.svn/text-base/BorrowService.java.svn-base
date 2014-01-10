@@ -1,0 +1,19 @@
+package com.bjtu.lms.service;
+
+import com.bjtu.lms.model.Borrow;
+import java.util.List;
+
+/**
+ *
+ * @author yilee
+ */
+public interface BorrowService {
+
+	public String borrow(int userId, int bookId);
+
+	public String returnBook(int bookId);
+
+	public Borrow getBorrowByBookId(int bookId);
+
+	public List<Borrow> getBorrowListByUserId(int userId);
+}

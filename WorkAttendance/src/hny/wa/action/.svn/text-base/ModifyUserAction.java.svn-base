@@ -1,0 +1,129 @@
+package com.bjtu.lms.action.user;
+
+import com.bjtu.lms.model.User;
+import com.bjtu.lms.service.UserService;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import java.util.Map;
+
+/**
+ * 
+ * @author yilee
+ */
+public class ModifyUserAction extends ActionSupport {
+
+	private String id;
+	private String name;
+	private String username;
+	private String password;
+	private String phone;
+	private String email;
+	private UserService userService;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		if (id == null) {
+			return ERROR;
+		}
+		int userId;
+		try {
+			userId = Integer.parseInt(id);
+		} catch (Exception e) {
+			return ERROR;
+		}
+		Map session = ActionContext.getContext().getSession();
+		if (name == null || name.equals("") || username == null
+				|| username.equals("") || password.equals("")
+				|| password.equals("")) {
+			session.put("modifyUser", null);
+		} else {
+			User u = userService
+					.modify(userId, name, username, password, phone,email);
+			if (u != null) {
+				session.put("modifyUser", u);
+			} else {
+				session.put("umodifyUserser", null);
+				return ERROR;
+			}
+		}
+		return SUCCESS;
+	}
+
+	// 进入修改界面
+	public String beginModify() {
+		if (id == null) {
+			return ERROR;
+		}
+		int userId;
+		try {
+			userId = Integer.parseInt(id);
+		} catch (Exception e) {
+			return ERROR;
+		}
+		User u = userService.findUserById(userId);
+		if (u == null) {
+			return ERROR;
+		} else {
+			ActionContext actionContext = ActionContext.getContext();
+			Map session = actionContext.getSession();
+			session.put("modifyUser", u);
+			return SUCCESS;
+		}
+	}
+}

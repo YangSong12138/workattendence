@@ -1,0 +1,24 @@
+package com.bjtu.lms.dao.impl;
+
+import java.util.List;
+
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import com.bjtu.lms.dao.SettingDao;
+import com.bjtu.lms.model.Setting;
+
+public class SettingDaoImpl extends HibernateDaoSupport implements SettingDao {
+
+	public void updateSetting(Setting setting) {
+		getHibernateTemplate().update(setting);
+	}
+
+	public Setting getSetting() {
+		List<Setting> sl = getHibernateTemplate().find("from Setting");
+		return sl.isEmpty() ? null : sl.get(0);
+	}
+
+	public void saveSetting(Setting setting) {
+		getHibernateTemplate().save(setting);
+	}
+}

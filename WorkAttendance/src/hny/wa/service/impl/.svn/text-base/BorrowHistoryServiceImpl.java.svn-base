@@ -1,0 +1,70 @@
+package com.bjtu.lms.service.impl;
+
+import com.bjtu.lms.dao.BorrowHistoryDao;
+import com.bjtu.lms.model.BorrowHistory;
+import com.bjtu.lms.service.BorrowHistoryService;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author yilee
+ */
+public class BorrowHistoryServiceImpl implements BorrowHistoryService {
+
+	private BorrowHistoryDao borrowHistoryDao;
+
+	public BorrowHistoryDao getBorrowHistoryDao() {
+		return borrowHistoryDao;
+	}
+
+	public void setBorrowHistoryDao(BorrowHistoryDao borrowHistoryDao) {
+		this.borrowHistoryDao = borrowHistoryDao;
+	}
+
+	public void insert(int userId, int bookId) {
+		BorrowHistory borrowHistory = new BorrowHistory();
+		borrowHistory.setUserId(userId);
+		borrowHistory.setBookId(bookId);
+		Date borrowDate = new Date();
+		borrowHistory.setBorrowDate(borrowDate);
+		borrowHistoryDao.insert(borrowHistory);
+	}
+
+	public void update(int id, int userId, int bookId, Date borrowDate, Date returnDate, int reBorrowTimes) {
+		BorrowHistory borrowHistory = getBorrowHistoryById(id);
+		borrowHistory.setUserId(userId);
+		borrowHistory.setBookId(bookId);
+		borrowHistory.setBorrowDate(borrowDate);
+		borrowHistory.setReturnDate(returnDate);
+		borrowHistory.setReBorrowTimes(reBorrowTimes);
+		borrowHistoryDao.modify(borrowHistory);
+	}
+
+	public BorrowHistory getBorrowHistoryById(int id) {
+		return borrowHistoryDao.getBorrowHistoryById(id);
+	}
+
+	public BorrowHistory getBorrowHistoryByBookId(int bookId) {
+		List<BorrowHistory> bhl = borrowHistoryDao.getBorrowHistoryByBookId(bookId);
+		if (bhl.isEmpty()) {
+			return null;
+
+		} else {
+
+			BorrowHistory borrowHistory = null;
+			for (int i = 0; i < bhl.size(); i++) {
+				borrowHistory = bhl.get(i);
+				if (borrowHistory.getReturnDate() == null) {
+					break;
+				}
+			}
+			return borrowHistory;
+		}
+
+	}
+
+	public List<BorrowHistory> getBorrowHistoryListByUserId(int userId) {
+		return borrowHistoryDao.getBorrowHistoryListByUserId(userId);
+	}
+}

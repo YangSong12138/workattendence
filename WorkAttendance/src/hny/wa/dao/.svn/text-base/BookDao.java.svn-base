@@ -1,0 +1,32 @@
+package com.bjtu.lms.dao;
+
+import com.bjtu.lms.model.Book;
+import com.bjtu.lms.model.Borrow;
+import java.util.List;
+
+/**
+ *
+ * @author yilee
+ */
+public interface BookDao {
+
+	public Book findBooksById(int id);
+
+	public Book findBooksByISBN(String ISBN);
+
+	public List<Book> findBooksByName(String name);
+
+	public List<Book> findBooksBySynopsis(String synopsis);
+
+	public List<Book> findBookByPublishTime(String publishTime);
+
+	public List<Book> findBookByAuthor(String author);
+
+	public List<Book> getBookList();
+
+	public void save(Book book);
+
+	public void delete(Book book);
+
+	public void modify(Book book);
+}

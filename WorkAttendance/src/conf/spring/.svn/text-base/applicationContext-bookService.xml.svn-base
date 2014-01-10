@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "/WEB-INF/dtd/spring-beans.dtd">
+<beans default-lazy-init="true">
+
+	<bean id="bookDao" class="com.bjtu.lms.dao.impl.BookDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="bookService" parent="transactionProxy">
+		<property name="target">
+			<bean class="com.bjtu.lms.service.impl.BookServiceImpl">
+				<property name="bookDao">
+					<ref local="bookDao"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="viewBookListAction" class="com.bjtu.lms.action.book.ViewBookListAction" lazy-init="false">
+		<property name="bookService">
+			<ref local="bookService"/>
+		</property>
+	</bean>
+	
+	<bean id="viewBookAction" class="com.bjtu.lms.action.book.ViewBookAction" lazy-init="false">
+		<property name="bookService">
+			<ref local="bookService"/>
+		</property>
+	</bean>
+	
+	<bean id="searchBookAction" class="com.bjtu.lms.action.book.SearchBookAction" lazy-init="false">
+		<property name="bookService">
+			<ref local="bookService"/>
+		</property>
+	</bean>
+	
+	<bean id="adminViewBookListAction" class="com.bjtu.lms.action.book.AdminViewBookListAction" lazy-init="false">
+		<property name="bookService">
+			<ref local="bookService"/>
+		</property>
+	</bean>
+	
+	<bean id="addBookAction" class="com.bjtu.lms.action.book.AddBookAction" lazy-init="false">
+		<property name="bookService">
+			<ref local="bookService"/>
+		</property>
+	</bean>
+	
+	<bean id="deleteBookAction" class="com.bjtu.lms.action.book.DeleteBookAction" lazy-init="false">
+		<property name="bookService">
+			<ref local="bookService"/>
+		</property>
+	</bean>
+	
+	<bean id="modifyBookAction" class="com.bjtu.lms.action.book.ModifyBookAction" lazy-init="false">
+		<property name="bookService">
+			<ref local="bookService"/>
+		</property>
+	</bean>
+	
+	
+	
+</beans>

@@ -1,0 +1,143 @@
+package com.bjtu.lms.service.impl;
+
+import java.util.Date;
+import java.util.List;
+
+import com.bjtu.lms.dao.BookDao;
+import com.bjtu.lms.dao.BorrowDao;
+import com.bjtu.lms.dao.BorrowHistoryDao;
+import com.bjtu.lms.dao.SettingDao;
+import com.bjtu.lms.dao.UserDao;
+import com.bjtu.lms.model.Book;
+import com.bjtu.lms.model.Borrow;
+import com.bjtu.lms.model.BorrowHistory;
+import com.bjtu.lms.model.Setting;
+import com.bjtu.lms.model.User;
+import com.bjtu.lms.service.BorrowHistoryService;
+import com.bjtu.lms.service.BorrowService;
+
+/**
+ * 
+ * @author yilee
+ */
+public class BorrowServiceImpl implements BorrowService {
+
+	private BorrowDao borrowDao;
+	private UserDao userDao;
+	private BookDao bookDao;
+	private BorrowHistoryDao borrowHistoryDao;
+	private BorrowHistoryService borrowHistoryService;
+	private SettingDao settingDao;
+
+	public SettingDao getSettingDao() {
+		return settingDao;
+	}
+
+	public void setSettingDao(SettingDao settingDao) {
+		this.settingDao = settingDao;
+	}
+
+	public BorrowHistoryDao getBorrowHistoryDao() {
+		return borrowHistoryDao;
+	}
+
+	public void setBorrowHistoryDao(BorrowHistoryDao borrowHistoryDao) {
+		this.borrowHistoryDao = borrowHistoryDao;
+	}
+
+	public BorrowHistoryService getBorrowHistoryService() {
+		return borrowHistoryService;
+	}
+
+	public void setBorrowHistoryService(
+			BorrowHistoryService borrowHistoryService) {
+		this.borrowHistoryService = borrowHistoryService;
+	}
+
+	public BookDao getBookDao() {
+		return bookDao;
+	}
+
+	public void setBookDao(BookDao bookDao) {
+		this.bookDao = bookDao;
+	}
+
+	public BorrowDao getBorrowDao() {
+		return borrowDao;
+	}
+
+	public void setBorrowDao(BorrowDao borrowDao) {
+		this.borrowDao = borrowDao;
+	}
+
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
+	public String borrow(int userId, int bookId) {
+		User u = userDao.findUserById(userId);
+		Book b = bookDao.findBooksById(bookId);
+		if (u == null) {
+			return "{suc:0, msg:'用户不存在'}";
+		} else if (b == null) {
+			return "{suc:0, msg:'图书不存在'}";
+		} else if (b.getBorrowType().equals("借阅")) {
+			return "{suc:0, msg:'图书已被借阅'}";
+		} else {
+			// 判断借阅数据是否超过最大
+			if(u.getUserType().getType().equals("禁用")){
+				return "{suc:0, msg:'该用户由于长期不还书，账号被锁定。'}";
+			}
+			List<Borrow> bl = getBorrowListByUserId(userId);
+			System.out.println("检测书目");
+			Setting s = settingDao.getSetting();
+			
+			if (bl.size() > s.getMaxBorrow()) {
+				return "{suc:0, msg:'该用户借的书书目已经达到最大值,不能再借...'}";
+			}
+			b.setBorrowType("借阅");
+			bookDao.modify(b);
+			Borrow borrow = new Borrow();
+			borrow.setUserId(userId);
+			borrow.setBookId(bookId);
+			borrow.setBorrowDate(new Date());
+			borrowDao.borrow(borrow);
+			// 插入历史表
+			borrowHistoryService.insert(userId, bookId);
+			return "{suc:1, msg:'借阅成功'}";
+		}
+	}
+
+	public String returnBook(int bookId) {
+		Book b = bookDao.findBooksById(bookId);
+		if (b == null) {
+			return "{suc:0, msg:'图书不存在'}";
+		} else if (!b.getBorrowType().equals("借阅")) {
+			return "{suc:0, msg:'图书不是被借阅状态，无法归还'}";
+		} else {
+			b.setBorrowType("正常");
+			bookDao.modify(b);
+			Borrow borrow = getBorrowByBookId(bookId);
+			borrowDao.delete(borrow);
+			// 更改历史表
+			BorrowHistory borrowHistory = borrowHistoryService
+					.getBorrowHistoryByBookId(bookId);
+			Date returnDate = new Date();
+			borrowHistory.setReturnDate(returnDate);
+			borrowHistoryDao.modify(borrowHistory);
+			return "{suc:1, msg:'归还成功'}";
+		}
+	}
+
+	public Borrow getBorrowByBookId(int bookId) {
+		return borrowDao.getBorrowByBookId(bookId);
+	}
+
+	public List<Borrow> getBorrowListByUserId(int userId) {
+		return borrowDao.getBorrowListByUserId(userId);
+	}
+}

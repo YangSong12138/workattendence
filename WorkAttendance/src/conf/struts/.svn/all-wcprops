@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/conf/struts
+END
+strutsConfig-adminActions.xml
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/conf/struts/strutsConfig-adminActions.xml
+END
+strutsConfig-bookActions.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/conf/struts/strutsConfig-bookActions.xml
+END
+strutsConfig-borrowActions.xml
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/3/trunk/LibraryManagementSystem/src/conf/struts/strutsConfig-borrowActions.xml
+END
+.strutsConfig-systemActions.mex
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/4/trunk/LibraryManagementSystem/src/conf/struts/.strutsConfig-systemActions.mex
+END
+strutsConfig-userActions.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/8/trunk/LibraryManagementSystem/src/conf/struts/strutsConfig-userActions.xml
+END
+strutsConfig-systemActions.xml
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/4/trunk/LibraryManagementSystem/src/conf/struts/strutsConfig-systemActions.xml
+END
+.strutsConfig-userActions.mex
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/8/trunk/LibraryManagementSystem/src/conf/struts/.strutsConfig-userActions.mex
+END

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "/WEB-INF/dtd/spring-beans.dtd">
+<beans default-lazy-init="true">
+
+	<bean id="workdayDao" class="hny.wa.dao.impl.WorkdayDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="WorkdayService" parent="transactionProxy">
+		<property name="target">
+			<bean class="hny.wa.service.impl.WorkdayServiceImpl">
+				<property name="workdayDao">
+					<ref local="workdayDao" />
+				</property>	
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="getWorkdayAction" class="hny.wa.action.getWorkdayAction"
+		lazy-init="false">
+		<property name="WorkdayService">
+			<ref local="WorkdayService" />
+		</property>
+	</bean>
+	<bean id="updateWorkdayAction" class="hny.wa.action.setWorkdayAction"
+		lazy-init="false">
+		<property name="WorkdayService">
+			<ref local="WorkdayService" />
+		</property>
+	</bean>
+
+</beans>

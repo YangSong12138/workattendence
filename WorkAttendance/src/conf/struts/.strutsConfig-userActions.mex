@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="user-common-json" location="0,0" size="0,0">
+    <action name="registAction" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="loginAction" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+  <package name="user-common-default" location="0,0" size="0,0">
+    <action name="me" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="me.jsp" />
+      </result>
+    </action>
+    <action name="logout" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+  <package name="user-admin-default" location="0,0" size="0,0">
+    <action name="viewUserListAction" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="addUserAction" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="beginModifyUserAction" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="error" />
+    </action>
+    <action name="modifyUserAction" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="error" />
+    </action>
+  </package>
+  <package name="user-admin-json" location="0,0" size="0,0">
+    <action name="deleteUserAction" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="resetFineAction" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+  <webResource name="me.jsp" path="/user/me.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+

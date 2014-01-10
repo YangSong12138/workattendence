@@ -1,0 +1,40 @@
+package com.bjtu.lms.service;
+
+import com.bjtu.lms.model.User;
+import java.util.List;
+
+/**
+ * @author yilee
+ */
+public interface UserService {
+
+	public User register(String name, String username, String password);
+
+	public User register(String name, String username, String password,
+			String email);
+
+	public User login(String username, String password);
+
+	public boolean addUser(String name, String username, String password,
+			String phone);
+
+	public boolean addUser(String name, String username, String password,
+			String phone, String email);
+
+	public User findUserById(int id);
+
+	public List getAllUser();
+
+	public boolean deleteUserById(int id);
+
+	public User findUserByUsername(String username);
+
+	public User modify(int id, String name, String username, String password,
+			String phone);
+
+	public User modify(int id, String name, String username, String password,
+			String phone, String email);
+
+	public void modify(User user);
+
+}

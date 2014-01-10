@@ -1,0 +1,16 @@
+package com.bjtu.lms.service;
+
+import com.bjtu.lms.model.Setting;
+
+/**
+ * 系统设置service接口
+ * 
+ * @author yilee
+ * 
+ */
+public interface SettingService {
+	
+	public String setSetting(int maxBorrow, int maxDays);
+
+	public Setting getSetting();
+}
